@@ -879,7 +879,7 @@ pricingTabs.forEach(tab => {
             </svg>
           </button>
           <div id="content-thailand" class="hidden px-4 pb-4 pl-14 text-sm text-gray-600 leading-relaxed">
-            <p>Our International Driving Permit works in Phuket, Thailand. The accepted format is 1 year valid Booklet along with a valid driver's license. You can apply for Printed IDP with 1 year validity.</p>
+            <p>Our International Driving Document works in Phuket, Thailand. The accepted format is 1 year valid Booklet along with a valid driver's license. You can apply for Printed IDP with 1 year validity.</p>
             <p class="mt-2 text-amber-600 font-medium">A digital IDP copy is not recognized in Thailand.</p>
           </div>
         </div>
@@ -896,7 +896,7 @@ pricingTabs.forEach(tab => {
             </svg>
           </button>
           <div id="content-uae" class="hidden px-4 pb-4 pl-14 text-sm text-gray-600 leading-relaxed">
-            <p>Our International Driving Permit works in UAE. The accepted format is 1 year valid Booklet along with a valid driver's license. You can apply for Printed IDP with 1 year validity.</p>
+            <p>Our International Driving Document works in UAE. The accepted format is 1 year valid Booklet along with a valid driver's license. You can apply for Printed IDP with 1 year validity.</p>
             <p class="mt-2 text-amber-600 font-medium">A digital IDP copy is not recognized in United Arab Emirates.</p>
           </div>
         </div>
@@ -913,7 +913,7 @@ pricingTabs.forEach(tab => {
             </svg>
           </button>
           <div id="content-spain" class="hidden px-4 pb-4 pl-14 text-sm text-gray-600 leading-relaxed">
-            <p>Our International Driving Permit works in Spain. The accepted format is 1 year valid Booklet along with a valid driver's license.</p>
+            <p>Our International Driving Document works in Spain. The accepted format is 1 year valid Booklet along with a valid driver's license.</p>
             <p class="mt-2 text-amber-600 font-medium">A digital IDP copy is not recognized in Spain.</p>
           </div>
         </div>
@@ -930,7 +930,7 @@ pricingTabs.forEach(tab => {
             </svg>
           </button>
           <div id="content-indonesia" class="hidden px-4 pb-4 pl-14 text-sm text-gray-600 leading-relaxed">
-            <p>Our International Driving Permit works in Indonesia. The accepted format is 1 year valid Booklet along with a valid driver's license.</p>
+            <p>Our International Driving Document works in Indonesia. The accepted format is 1 year valid Booklet along with a valid driver's license.</p>
             <p class="mt-2 text-amber-600 font-medium">A digital IDP copy is not recognized in Indonesia.</p>
           </div>
         </div>
@@ -947,7 +947,7 @@ pricingTabs.forEach(tab => {
             </svg>
           </button>
           <div id="content-usa" class="hidden px-4 pb-4 pl-14 text-sm text-gray-600 leading-relaxed">
-            <p>Our International Driving Permit works in USA. USA and 150+ more countries accept IDP for up to 3 years along with a valid driver's license.</p>
+            <p>Our International Driving Document works in USA. USA and 150+ more countries accept IDP for up to 3 years along with a valid driver's license.</p>
           </div>
         </div>
 
@@ -979,7 +979,7 @@ pricingTabs.forEach(tab => {
             </svg>
           </button>
           <div id="content-japan" class="hidden px-4 pb-4 pl-14 text-sm text-gray-600 leading-relaxed">
-            <p class="text-red-600 font-medium">Our International Driving Permit is currently not accepted in Japan.</p>
+            <p class="text-red-600 font-medium">Our International Driving Document is currently not accepted in Japan.</p>
           </div>
         </div>
 
@@ -995,7 +995,7 @@ pricingTabs.forEach(tab => {
             </svg>
           </button>
           <div id="content-korea" class="hidden px-4 pb-4 pl-14 text-sm text-gray-600 leading-relaxed">
-            <p class="text-red-600 font-medium">Our International Driving Permit is currently not accepted in South Korea.</p>
+            <p class="text-red-600 font-medium">Our International Driving Document is currently not accepted in South Korea.</p>
           </div>
         </div>
 
@@ -1011,7 +1011,7 @@ pricingTabs.forEach(tab => {
             </svg>
           </button>
           <div id="content-vietnam" class="hidden px-4 pb-4 pl-14 text-sm text-gray-600 leading-relaxed">
-            <p class="text-amber-600 font-medium">Driving in Vietnam requires a 1968 Vienna IDP. Our International Driving Permit follows the 1949 Geneva Convention and may not be accepted.</p>
+            <p class="text-amber-600 font-medium">Driving in Vietnam requires a 1968 Vienna IDP. Our International Driving Document follows the 1949 Geneva Convention and may not be accepted.</p>
           </div>
         </div>
       </div>
@@ -1033,16 +1033,27 @@ function closeLimitationsModal() {
   document.body.style.overflow = '';
 }
 
+const countryIds = ['thailand', 'uae', 'spain', 'indonesia', 'usa', 'china', 'japan', 'korea', 'vietnam'];
+
 function toggleAccordion(countryId) {
   const content = document.getElementById('content-' + countryId);
   const chevron = document.getElementById('chevron-' + countryId);
+  const isCurrentlyHidden = content.classList.contains('hidden');
 
-  if (content.classList.contains('hidden')) {
+  // Close all other accordions first
+  countryIds.forEach(id => {
+    const otherContent = document.getElementById('content-' + id);
+    const otherChevron = document.getElementById('chevron-' + id);
+    if (otherContent && otherChevron) {
+      otherContent.classList.add('hidden');
+      otherChevron.style.transform = 'rotate(0deg)';
+    }
+  });
+
+  // Toggle the clicked accordion (open if it was closed)
+  if (isCurrentlyHidden) {
     content.classList.remove('hidden');
     chevron.style.transform = 'rotate(180deg)';
-  } else {
-    content.classList.add('hidden');
-    chevron.style.transform = 'rotate(0deg)';
   }
 }
 
