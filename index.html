@@ -522,7 +522,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <span id="emailError" class="text-red-500 text-xs hidden">Please enter a valid email address</span>
 <span class="text-slate-600 text-xs box-border caret-transparent block leading-4 outline-[oklab(0.638374_-0.127061_0.0523999_/_0.5)]">We'll send your digital IDD here.</span>
 </label>
-<label class="text-sm box-border caret-transparent gap-x-2 grid leading-5 outline-[oklab(0.638374_-0.127061_0.0523999_/_0.5)] gap-y-2"><span class="box-border caret-transparent block outline-[oklab(0.638374_-0.127061_0.0523999_/_0.5)]">Destination Country <span class="text-red-500">*</span></span>
+<label class="text-sm box-border caret-transparent gap-x-2 grid leading-5 outline-[oklab(0.638374_-0.127061_0.0523999_/_0.5)] gap-y-2"><div class="flex items-center justify-between"><span class="box-border caret-transparent block outline-[oklab(0.638374_-0.127061_0.0523999_/_0.5)]">Destination Country <span class="text-red-500">*</span></span><button type="button" onclick="openLimitationsModal()" class="text-primary-500 text-xs flex items-center gap-1 hover:text-primary-600 transition-colors font-medium"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-amber-500" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>See limitations</button></div>
 <div class="relative">
 <input id="countryTravel" aria-label="Country of Travel" placeholder="Type to search countries..." required class="box-border caret-transparent block outline-[oklab(0.638374_-0.127061_0.0523999_/_0.5)] w-full border border-gray-200 px-3 py-2 rounded-[2px] border-solid focus:border-primary-300 focus:ring-1 focus:ring-primary-300 bg-white" autocomplete="off" />
 <div id="countryDropdown" class="absolute z-50 w-full bg-white border border-gray-200 rounded-[2px] shadow-lg max-h-60 overflow-y-auto hidden">
@@ -844,6 +844,213 @@ pricingTabs.forEach(tab => {
     updatePrices(duration);
     updateActiveButton(this);
   });
+});
+</script>
+
+<!-- Limitations Modal -->
+<div id="limitationsModal" class="fixed inset-0 z-[100] hidden">
+  <!-- Backdrop -->
+  <div class="fixed inset-0 bg-black bg-opacity-50 transition-opacity" onclick="closeLimitationsModal()"></div>
+
+  <!-- Modal Content -->
+  <div class="fixed inset-0 flex items-center justify-center p-4">
+    <div class="bg-white rounded-lg shadow-xl max-w-lg w-full max-h-[80vh] overflow-hidden relative">
+      <!-- Header -->
+      <div class="flex items-center justify-between p-6 border-b border-gray-200">
+        <h2 class="font-heading text-2xl font-semibold text-gray-900">Limitations</h2>
+        <button onclick="closeLimitationsModal()" class="text-gray-400 hover:text-gray-600 transition-colors p-1">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Country List -->
+      <div class="overflow-y-auto max-h-[calc(80vh-80px)]">
+        <!-- Thailand -->
+        <div class="border-b border-gray-100">
+          <button onclick="toggleAccordion('thailand')" class="w-full flex items-center justify-between p-4 hover:bg-gray-50 transition-colors">
+            <div class="flex items-center gap-3">
+              <span class="text-2xl">🇹🇭</span>
+              <span class="font-medium text-gray-900">Thailand</span>
+            </div>
+            <svg id="chevron-thailand" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 transition-transform" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+            </svg>
+          </button>
+          <div id="content-thailand" class="hidden px-4 pb-4 pl-14 text-sm text-gray-600 leading-relaxed">
+            <p>Our International Driving Permit works in Phuket, Thailand. The accepted format is 1 year valid Booklet along with a valid driver's license. You can apply for Printed IDP with 1 year validity.</p>
+            <p class="mt-2 text-amber-600 font-medium">A digital IDP copy is not recognized in Thailand.</p>
+          </div>
+        </div>
+
+        <!-- United Arab Emirates -->
+        <div class="border-b border-gray-100">
+          <button onclick="toggleAccordion('uae')" class="w-full flex items-center justify-between p-4 hover:bg-gray-50 transition-colors">
+            <div class="flex items-center gap-3">
+              <span class="text-2xl">🇦🇪</span>
+              <span class="font-medium text-gray-900">United Arab Emirates</span>
+            </div>
+            <svg id="chevron-uae" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 transition-transform" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+            </svg>
+          </button>
+          <div id="content-uae" class="hidden px-4 pb-4 pl-14 text-sm text-gray-600 leading-relaxed">
+            <p>Our International Driving Permit works in UAE. The accepted format is 1 year valid Booklet along with a valid driver's license. You can apply for Printed IDP with 1 year validity.</p>
+            <p class="mt-2 text-amber-600 font-medium">A digital IDP copy is not recognized in United Arab Emirates.</p>
+          </div>
+        </div>
+
+        <!-- Spain -->
+        <div class="border-b border-gray-100">
+          <button onclick="toggleAccordion('spain')" class="w-full flex items-center justify-between p-4 hover:bg-gray-50 transition-colors">
+            <div class="flex items-center gap-3">
+              <span class="text-2xl">🇪🇸</span>
+              <span class="font-medium text-gray-900">Spain</span>
+            </div>
+            <svg id="chevron-spain" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 transition-transform" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+            </svg>
+          </button>
+          <div id="content-spain" class="hidden px-4 pb-4 pl-14 text-sm text-gray-600 leading-relaxed">
+            <p>Our International Driving Permit works in Spain. The accepted format is 1 year valid Booklet along with a valid driver's license.</p>
+            <p class="mt-2 text-amber-600 font-medium">A digital IDP copy is not recognized in Spain.</p>
+          </div>
+        </div>
+
+        <!-- Indonesia -->
+        <div class="border-b border-gray-100">
+          <button onclick="toggleAccordion('indonesia')" class="w-full flex items-center justify-between p-4 hover:bg-gray-50 transition-colors">
+            <div class="flex items-center gap-3">
+              <span class="text-2xl">🇮🇩</span>
+              <span class="font-medium text-gray-900">Indonesia</span>
+            </div>
+            <svg id="chevron-indonesia" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 transition-transform" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+            </svg>
+          </button>
+          <div id="content-indonesia" class="hidden px-4 pb-4 pl-14 text-sm text-gray-600 leading-relaxed">
+            <p>Our International Driving Permit works in Indonesia. The accepted format is 1 year valid Booklet along with a valid driver's license.</p>
+            <p class="mt-2 text-amber-600 font-medium">A digital IDP copy is not recognized in Indonesia.</p>
+          </div>
+        </div>
+
+        <!-- USA -->
+        <div class="border-b border-gray-100">
+          <button onclick="toggleAccordion('usa')" class="w-full flex items-center justify-between p-4 hover:bg-gray-50 transition-colors">
+            <div class="flex items-center gap-3">
+              <span class="text-2xl">🇺🇸</span>
+              <span class="font-medium text-gray-900">USA</span>
+            </div>
+            <svg id="chevron-usa" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 transition-transform" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+            </svg>
+          </button>
+          <div id="content-usa" class="hidden px-4 pb-4 pl-14 text-sm text-gray-600 leading-relaxed">
+            <p>Our International Driving Permit works in USA. USA and 150+ more countries accept IDP for up to 3 years along with a valid driver's license.</p>
+          </div>
+        </div>
+
+        <!-- China -->
+        <div class="border-b border-gray-100">
+          <button onclick="toggleAccordion('china')" class="w-full flex items-center justify-between p-4 hover:bg-gray-50 transition-colors">
+            <div class="flex items-center gap-3">
+              <span class="text-2xl">🇨🇳</span>
+              <span class="font-medium text-gray-900">China</span>
+            </div>
+            <svg id="chevron-china" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 transition-transform" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+            </svg>
+          </button>
+          <div id="content-china" class="hidden px-4 pb-4 pl-14 text-sm text-gray-600 leading-relaxed">
+            <p class="text-red-600 font-medium">China does not allow travelers to drive. You need a local Chinese driver's license to drive legally in Mainland China.</p>
+          </div>
+        </div>
+
+        <!-- Japan -->
+        <div class="border-b border-gray-100">
+          <button onclick="toggleAccordion('japan')" class="w-full flex items-center justify-between p-4 hover:bg-gray-50 transition-colors">
+            <div class="flex items-center gap-3">
+              <span class="text-2xl">🇯🇵</span>
+              <span class="font-medium text-gray-900">Japan</span>
+            </div>
+            <svg id="chevron-japan" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 transition-transform" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+            </svg>
+          </button>
+          <div id="content-japan" class="hidden px-4 pb-4 pl-14 text-sm text-gray-600 leading-relaxed">
+            <p class="text-red-600 font-medium">Our International Driving Permit is currently not accepted in Japan.</p>
+          </div>
+        </div>
+
+        <!-- South Korea -->
+        <div class="border-b border-gray-100">
+          <button onclick="toggleAccordion('korea')" class="w-full flex items-center justify-between p-4 hover:bg-gray-50 transition-colors">
+            <div class="flex items-center gap-3">
+              <span class="text-2xl">🇰🇷</span>
+              <span class="font-medium text-gray-900">South Korea</span>
+            </div>
+            <svg id="chevron-korea" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 transition-transform" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+            </svg>
+          </button>
+          <div id="content-korea" class="hidden px-4 pb-4 pl-14 text-sm text-gray-600 leading-relaxed">
+            <p class="text-red-600 font-medium">Our International Driving Permit is currently not accepted in South Korea.</p>
+          </div>
+        </div>
+
+        <!-- Vietnam -->
+        <div class="border-b border-gray-100">
+          <button onclick="toggleAccordion('vietnam')" class="w-full flex items-center justify-between p-4 hover:bg-gray-50 transition-colors">
+            <div class="flex items-center gap-3">
+              <span class="text-2xl">🇻🇳</span>
+              <span class="font-medium text-gray-900">Vietnam</span>
+            </div>
+            <svg id="chevron-vietnam" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 transition-transform" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+            </svg>
+          </button>
+          <div id="content-vietnam" class="hidden px-4 pb-4 pl-14 text-sm text-gray-600 leading-relaxed">
+            <p class="text-amber-600 font-medium">Driving in Vietnam requires a 1968 Vienna IDP. Our International Driving Permit follows the 1949 Geneva Convention and may not be accepted.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Limitations Modal Functions
+function openLimitationsModal() {
+  const modal = document.getElementById('limitationsModal');
+  modal.classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLimitationsModal() {
+  const modal = document.getElementById('limitationsModal');
+  modal.classList.add('hidden');
+  document.body.style.overflow = '';
+}
+
+function toggleAccordion(countryId) {
+  const content = document.getElementById('content-' + countryId);
+  const chevron = document.getElementById('chevron-' + countryId);
+
+  if (content.classList.contains('hidden')) {
+    content.classList.remove('hidden');
+    chevron.style.transform = 'rotate(180deg)';
+  } else {
+    content.classList.add('hidden');
+    chevron.style.transform = 'rotate(0deg)';
+  }
+}
+
+// Close modal on Escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    closeLimitationsModal();
+  }
 });
 </script>
 
